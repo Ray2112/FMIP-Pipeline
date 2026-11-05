@@ -1,0 +1,108 @@
+From 2eb3d203b110aad04ccc7973d619e7625f06dbff Mon Sep 17 00:00:00 2001
+From: Zhax <rayzhax@gmail.com>
+Date: Thu, 5 Nov 2026 22:10:07 +0100
+Subject: [PATCH] Codigos de paragem: lista Downtime Codes v3 (decisoes
+ 2026-11-05)
+
+- P25 removido (nao esta na v3; registos antigos mantem snapshot)
+- P06 nome ROLLER CHANGE; O04 nome POWER FAILURE, Tier 3 Other
+- P16 e P19 Tier 3 Process; P17 mantido FUBA BIN FULL
+- Tratamento OEE inalterado. Sem efeito em Outubro (sem recalculo).
+- Testes: 60 codigos
+
+Co-Authored-By: Claude Haiku 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01QavWMiuALs4RDXT3f1AnDq
+---
+ js/prod.js         | 11 +++++------
+ tests/prod.test.js | 11 ++++++-----
+ 2 files changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/js/prod.js b/js/prod.js
+index 846bfaa..d7cda13 100644
+--- a/js/prod.js
++++ b/js/prod.js
+@@ -18,7 +18,7 @@
+   // Códigos de paragem FMO — fonte: 2026-09-30_FMO_Downtime_Codes_v2.xlsx (folha Folha1), autorizado por Zhax (14-10-2026).
+   // [código, nome, Tier 3, tratamento OEE] como no ficheiro. P17: nome 'FUBA BIN FULL' definido por Zhax (no ficheiro: FLOUR BIN FILLING).
+   // Colunas V1, V2 e Decisão foram retiradas no ficheiro (só ficam na folha de arquivo; não usar para reporting).
+-  const DOWNTIME_SOURCE = '2026-09-30_FMO_Downtime_Codes_v2.xlsx (Folha1) + P18 conforme v3 (26-10-2026)';
++  const DOWNTIME_SOURCE = '/Parameters/Downtime Codes v3.xlsx (Dropbox) — decisões do dono 2026-11-05: P17 mantido, P25 removido, P06/O04 nomes v3, P16/P19/P24 Process, O04 Other';
+   const OLD_DOWNTIME_SOURCES = ['2026-09-30_FMO_Downtime_Codes_v2.xlsx (Folha1)', 'Downtime Codes v2 (Zhax, 09-10-2026)', 'Downtime_Codes.xlsx (08-10-2026)'];   // listas anteriores (substituídas automaticamente se nunca editadas)
+   const DOWNTIME_CODES = [
+     ["P01", "PRODUCTION START-UP", "Process", "Counted as loss"],
+@@ -32,11 +32,11 @@
+     ["O03", "SCHEDULED MAINTENANCE", "Other", "Excluded - Planned"],
+     ["P04", "LOOSE BELTS", "Process", "Counted as loss"],
+     ["A04", "FLOUR CIRCUIT", "Breakdown", "Counted as loss"],
+-    ["O04", "POWER FAILURE - ENDE GRID", "Power Failure", "Excluded - External"],
++    ["O04", "POWER FAILURE", "Other", "Excluded - External"],
+     ["P05", "LEVEL PROBE TRIP", "Process", "Counted as loss"],
+     ["A05", "SASSORES", "Breakdown", "Counted as loss"],
+     ["O05", "SPECIAL PROJECTS", "Other", "Excluded - Planned"],
+-    ["P06", "ROLLER CHANGE (SCHEDULED)", "Process", "Excluded - Planned"],
++    ["P06", "ROLLER CHANGE", "Process", "Excluded - Planned"],
+     ["A06", "AIRLOCK LINE", "Breakdown", "Counted as loss"],
+     ["O06", "SCHEDULED REPAIRS", "Other", "Excluded - Planned"],
+     ["P07", "BRAN BIN FILLING", "Process", "Counted as loss"],
+@@ -63,13 +63,13 @@
+     ["A14", "PLANSIFTER", "Breakdown", "Counted as loss"],
+     ["P15", "BROKEN SIEVES/SCREENS", "Process", "Counted as loss"],
+     ["A15", "BRAN SCREW CONVEYOR", "Breakdown", "Counted as loss"],
+-    ["P16", "NO GRAIN AVAILABLE FOR MILLING", "Other", "Excluded - External"],
++    ["P16", "NO GRAIN AVAILABLE FOR MILLING", "Process", "Excluded - External"],
+     ["A16", "VIBRATORS", "Breakdown", "Counted as loss"],
+     ["P17", "FUBA BIN FULL", "Other", "Excluded - External"],
+     ["A17", "BROKEN BELTS", "Breakdown", "Counted as loss"],
+     ["P18", "INSPECTION/CLEANING PLAN COMPLIANCE", "Process", "Excluded - Planned"],   // v3 (21-10-2026), Zhax 26-10-2026
+     ["A18", "FLOUR COLLECTOR SCREW CONVEYOR", "Breakdown", "Counted as loss"],
+-    ["P19", "EXCESS FINISHED PRODUCT", "Other", "Excluded - External"],
++    ["P19", "EXCESS FINISHED PRODUCT", "Process", "Excluded - External"],
+     ["A19", "BURNT MOTOR/GEAR MOTOR", "Breakdown", "Counted as loss"],
+     ["P20", "THERMAL TRIP", "Process", "Counted as loss"],
+     ["A20", "DRAG CONVEYOR SCRAPER", "Breakdown", "Counted as loss"],
+@@ -80,7 +80,6 @@
+     ["P23", "POLISHER FILLING", "Process", "Counted as loss"],
+     ["A50", "OTHER BREAKDOWNS", "Breakdown", "Counted as loss"],
+     ["P24", "EMERGENCY STOP", "Process", "Counted as loss"],
+-    ["P25", "ROLL DAMAGE IN PRODUCTION", "Process", "Counted as loss"],
+     ["P50", "OTHER PROCESS STOP", "Process", "Counted as loss"]
+   ].map(([code, name, tier3, oee]) => ({ code, name, namePt: null, tier3, oee, active: true }));
+   const TIER3 = ['Process', 'Breakdown', 'Feed Mill', 'Power Failure', 'Other'];
+diff --git a/tests/prod.test.js b/tests/prod.test.js
+index 2588246..9dfe0e2 100644
+--- a/tests/prod.test.js
++++ b/tests/prod.test.js
+@@ -481,16 +481,17 @@ t('vários produtos (v1.8.0): grão = produto principal (1.º); outros só quant
+ });
+ 
+ t('códigos de paragem FMO (Downtime_Codes.xlsx)', () => {
+-  assert.strictEqual(P.DOWNTIME_CODES.length, 61);
+-  assert.strictEqual(new Set(P.DOWNTIME_CODES.map(c => c.code)).size, 61);
++  assert.strictEqual(P.DOWNTIME_CODES.length, 60);  // v3 2026-11-05 (sem P25)
++  assert.strictEqual(new Set(P.DOWNTIME_CODES.map(c => c.code)).size, 60);
+   assert.ok(P.DOWNTIME_CODES.every(c => /^[PAO]\d{2}$/.test(c.code) && c.code === c.code.trim()));
+   assert.ok(P.DOWNTIME_CODES.every(c => P.TIER3.indexOf(c.tier3) >= 0));
+   assert.ok(P.DOWNTIME_CODES.every(c => P.OEE_TREAT.indexOf(c.oee) >= 0));
+   assert.deepStrictEqual(P.findCode('A02'), { code: 'A02', name: 'ASPIRATION FAN', namePt: null, tier3: 'Breakdown', oee: 'Counted as loss', active: true });
+   assert.strictEqual(P.findCode('P17').name, 'FUBA BIN FULL');   // nome definido por Zhax (14-10-2026)
+   assert.strictEqual(P.findCode('P17').oee, 'Excluded - External');
+-  assert.strictEqual(P.findCode('P25').oee, 'Counted as loss');  // código novo na v2
+-  assert.strictEqual(P.findCode('O04').tier3, 'Power Failure');
++  assert.strictEqual(P.findCode('P25'), null);  // removido 2026-11-05 (decisão do dono); registos antigos mantêm snapshot
++  assert.strictEqual(P.findCode('O04').tier3, 'Other');  // v3 2026-11-05
++  assert.strictEqual(P.findCode('O04').name, 'POWER FAILURE');
+   assert.ok(P.DOWNTIME_CODES.every(c => c.namePt === null && !('v1' in c) && !('v2' in c)));
+   assert.deepStrictEqual(P.validateCodes(P.defaultCodes()), []);
+ });
+@@ -612,7 +613,7 @@ console.log('prod.test.js: ' + n + ' testes OK');
+   // códigos guardados antes: nome PT e activação mantêm-se; a lista e o tratamento OEE vêm do ficheiro v2
+   const old = [{ code: 'A22', name: 'OLD', namePt: 'NOME PT', v1: 'x', v2: 'Breakdown', tier3: 'Breakdown', oee: null, active: false }, { code: 'Z99', name: 'GONE' }];
+   const m = P.mergeCodes(old);
+-  assert.strictEqual(m.list.length, 61);
++  assert.strictEqual(m.list.length, 60);  // v3 2026-11-05
+   assert.deepStrictEqual(m.list.find(c => c.code === 'A22'), Object.assign({}, P.findCode('A22'), { namePt: 'NOME PT', active: false }));   // nome e OEE vêm do ficheiro
+   assert.deepStrictEqual(m.dropped, ['Z99']);
+   assert.strictEqual(m.list.find(c => c.code === 'P17').name, 'FUBA BIN FULL');
+-- 
+2.43.0
+
