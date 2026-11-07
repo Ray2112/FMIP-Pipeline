@@ -63,9 +63,9 @@
 
 - Prodn-Mgt (`Ray2112/Prodn-Mgt`): PR #4 "Downtime Codes v3" merged (merge commit `ef94b0d`). The branch commit `2eb3d20` is in `main`. Test files on `main`: 11, all passing (checked 7 Nov 2026).
 - Grain-Mgt (`Ray2112/Grain-Mgt`): PR #1 "Downtime Codes v3 Grain-Mgt" merged (merge commit `40218a9`). The branch commit `7f1a3eb` is in `main`. Test files on `main`: 9, all passing (checked 7 Nov 2026).
-- Owner validation in the apps: **not confirmed in the record.** The merge was made after the handover was written. The owner should confirm the merge was intentional and that the app was validated.
+- Owner validation in the apps: confirmed by the owner on 2026-11-06, before the merge.
 - Not yet done: the version string in `js/prod.js` on `main` is still `2.4.0`. Version bumps need owner approval. The README changelog was not checked in this revision.
-- Stale branch `downtime-v3` still exists on both repositories, with one commit or line difference from `main`. Delete only after owner approval (Rule: no deletion without approval).
+- Remote branches `downtime-v3` and `o11-tier-other` still exist on both app repositories (merged; not deleted). Delete only after owner approval.
 - Remote branch `feat/fmip-agent-team` on the FMIP-Pipeline repository: state not re-checked in this revision. The handover records that deletion was refused by the proxy.
 
 **4.2 Glose sample file (purchasing fields).** Owner to provide.
@@ -77,4 +77,3 @@
 - Test suites pass on `main` in both repositories. They are unit-level tests only. The apps have not been run in a browser against real data.
 - Old records that use P25 will show as an unknown code if re-validated. Check on first use.
 - The `docs/patches/` folder mentioned in v0.4 §4.1 was not checked in this revision.
-- Commit and merge history is from a public read-only clone at `/home/claude/ray2112/`. It shows what is public on GitHub, not the owner's local state.
