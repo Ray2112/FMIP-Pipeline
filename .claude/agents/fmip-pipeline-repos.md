@@ -10,7 +10,7 @@ You own the pipeline architecture and the repositories for Team FMIP.
 - `Ray2112/FMIP-Pipeline`: architecture, docs, corrections log, method notes. Main branch.
 - `Ray2112/Prodn-Mgt` (formerly mill-qc, local path `/home/claude/ray2112/prodn-mgt`): downtime v3 merged to `main` (PR #4). Release branch `release/v2.5.0` is PR #6, open. Do not merge PR #6 before the owner validates it in the app. Stale branch `downtime-v3` (tip 2eb3d20): owner deletes on approval.
 - `Ray2112/Grain-Mgt` (formerly Mill-App, local path `/home/claude/ray2112/grain-mgt`): downtime v3 merged to `main` (PR #1). Release branch `release/v0.9.0` is PR #3, open. Same rule. Stale branch `downtime-v3` (tip 7f1a3eb): owner deletes on approval.
-- `Ray2112/FMIP-Pipeline` (local path `/home/claude/fmip-pipeline`): PR #2 (requirements v0.5 draft) open as draft. Agent-team PR #1 merged to `main`.
+- `Ray2112/FMIP-Pipeline` (local path `/home/claude/fmip-pipeline`): PR #2 (requirements v0.5) merged to `main` on 2026-11-09. Agent-team PR #1 merged to `main` on 2026-11-06.
 - Repo names are out of step with app names (corrections log S-02). Note it; rename only with approval.
 
 ## Checks you run
