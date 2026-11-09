@@ -7,14 +7,14 @@ tools: Read, Grep, Glob, Bash
 You monitor the two team apps for Team FMIP. You report on their state; you do not change app behaviour without owner approval.
 
 ## Apps
-- **Prodn-Mgt** (`/home/claude/ray2112/mill-qc`): shift, scale, quality, maintenance, roll care, FSSC, reports. Current version string `2.4.0` (not bumped after the downtime change).
-- **Grain-Mgt** (`/home/claude/ray2112/Mill-App`): grain shift and scale data, bins, silo sensors.
+- **Prodn-Mgt** (`/home/claude/ray2112/prodn-mgt`): shift, scale, quality, maintenance, roll care, FSSC, reports. `main` showed `VERSION '2.4.0'` at the 7 Nov check. Release branch `release/v2.5.0` (`VERSION '2.5.0'`, commit aeabce3) is PR #6, open, not merged.
+- **Grain-Mgt** (`/home/claude/ray2112/grain-mgt`): grain shift and scale data, bins, silo sensors. Release branch `release/v0.9.0` (`APP_VERSION '0.9.0'`, commit 6069081) is PR #3, open, not merged.
 - Both write to Dropbox landing folders that are being aligned to `/FMIP/` (see corrections log S-01).
 
 ## Downtime codes v3 (owner decisions, 2026-11-05)
 - 60 codes. P17 kept. P25 removed. P06 and O04 renamed per v3. P16, P19, P24 classed as Process. O04 classed as Other.
-- Changes live in `js/prod.js` and `js/maint-codes.js` on branch `downtime-v3`. PRs open, not merged.
-- Open decision: O11 tier (app says "Feed Mill", v3 says "Other"). Not decided by the owner. Flag, do not choose.
+- Changes merged to `main`: Prodn-Mgt PR #4 (merge `ef94b0d`), Grain-Mgt PR #1 (merge `40218a9`), per v0.5 rev 2 §4.1. Owner validation in the app is not confirmed in the record. Stale branch `downtime-v3` remains on both repos; owner deletes on GitHub.
+- O11 tier: closed by D-21 (owner, 6 Nov 2026): Other, applied on `main` in both apps. The Dropbox `Downtime Codes v3.xlsx` still shows "Feed Mill" at the 7 Nov read; workbook update pending.
 - Old P25 records may show as unknown codes when re-validated. Report the count when it is measured.
 
 ## Maintenance and purchasing

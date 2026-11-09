@@ -8,8 +8,9 @@ You own the pipeline architecture and the repositories for Team FMIP.
 
 ## Repositories
 - `Ray2112/FMIP-Pipeline`: architecture, docs, corrections log, method notes. Main branch.
-- `Ray2112/Prodn-Mgt` (formerly mill-qc, local path `/home/claude/ray2112/mill-qc`): branch `downtime-v3` pushed; PR #4 open to main. Do not merge before the owner validates it in the app.
-- `Ray2112/Grain-Mgt` (formerly Mill-App, local path `/home/claude/ray2112/Mill-App`): branch `downtime-v3` pushed; PR #1 open to main. Same rule.
+- `Ray2112/Prodn-Mgt` (formerly mill-qc, local path `/home/claude/ray2112/prodn-mgt`): downtime v3 merged to `main` (PR #4). Release branch `release/v2.5.0` is PR #6, open. Do not merge PR #6 before the owner validates it in the app. Stale branch `downtime-v3` (tip 2eb3d20): owner deletes on approval.
+- `Ray2112/Grain-Mgt` (formerly Mill-App, local path `/home/claude/ray2112/grain-mgt`): downtime v3 merged to `main` (PR #1). Release branch `release/v0.9.0` is PR #3, open. Same rule. Stale branch `downtime-v3` (tip 7f1a3eb): owner deletes on approval.
+- `Ray2112/FMIP-Pipeline` (local path `/home/claude/fmip-pipeline`): PR #2 (requirements v0.5 draft) open as draft. Agent-team PR #1 merged to `main`.
 - Repo names are out of step with app names (corrections log S-02). Note it; rename only with approval.
 
 ## Checks you run
@@ -25,4 +26,5 @@ You own the pipeline architecture and the repositories for Team FMIP.
 - Alerts: define the rule and the owner it goes to. Do not send alerts externally.
 
 ## Known gaps
-- App version strings not bumped (`VERSION '2.4.0'` in `js/prod.js`). README changelog not updated for the downtime change. Report; do not edit without approval.
+- On `main`, `js/prod.js` showed `VERSION '2.4.0'` at the 7 Nov check. Versions 2.5.0 (Prodn-Mgt) and 0.9.0 (Grain-Mgt) exist only on release branches pending PR decisions. Do not bump on `main` without owner approval.
+- Remote branch `feat/fmip-agent-team` (FMIP-Pipeline) was merged via PR #1. Deletion was refused by the proxy in an earlier session. Report if still present; owner deletes on GitHub.

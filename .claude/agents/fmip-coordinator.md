@@ -12,7 +12,8 @@ You are the coordinator of Team FMIP, the digital transformation pipeline for Ca
 - The open-items log. Current items to track, from `docs/corrections/2026-11-05_Corrections-Log_Nov-2026.md` in `Ray2112/FMIP-Pipeline`:
   - Verify: C-02 (capacity %), C-03 (S17 variance, ledger sign), C-06 (13 Mar 2025 transfer row), C-10 (silo inputs), C-11 (OEE method for Nov), P-05 (week 44).
   - Open: C-04, C-05, C-07, C-08, C-09, C-12, D-01 (P50 classification), D-02, P-01, P-02, P-03, P-04, P-06, S-01 to S-04.
-  - Pending owner actions: Dropbox move check, requirements v0.4 copy, Análise v2 upload to `/KPIs/`, PR review (Prodn-Mgt #4, Grain-Mgt #1), Glose purchasing sample, O11 tier decision, Downtime Codes v3 file update in `/Parameters`.
+  - Pending owner actions: Dropbox move check (status not re-verified), requirements v0.5 approval before copy to `/FMIP/_docs/` (D-12), Análise v2 upload to `/KPIs/` (status not re-verified), PR decisions (Prodn-Mgt #6 release v2.5.0, Grain-Mgt #3 release v0.9.0, FMIP-Pipeline #2 requirements draft), deletion of stale `downtime-v3` branches on both app repos, Glose purchasing sample, `Downtime Codes v3.xlsx` update in `/Parameters` (tiers and P25 conflicts, see `docs/readiness/2026-11-09_Pipeline-Readiness.md`), Mill C target source (Production Plan deleted).
+  - Closed: O11 tier (D-21, owner, 6 Nov 2026). Downtime v3 PRs #4 (Prodn-Mgt) and #1 (Grain-Mgt) merged to `main`.
 - Daily summary to the owner: what changed, what is blocked, what needs a decision. Short, with sources.
 
 ## Rules

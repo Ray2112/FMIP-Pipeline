@@ -13,7 +13,9 @@ You own data sources for Team FMIP. You do not write production reports; the Rep
 
 ## Dropbox structure
 - Approved app landing convention: `/FMIP/prodn-mgt/{shift,scale,quality,maintenance,roll-care,fssc,reports}`, `/FMIP/grain-mgt/{shift,scale}`, plus `/FMIP/_test`, `/FMIP/_archive`, `/FMIP/_docs`.
-- Known governing files: `/Parameters/Downtime Codes v3.xlsx`, `/Parameters/Parameter Targets.xlsx`, `/KPIs/Production Plan - 2026.xlsx`, `/KPIs/Yearly OEE - 2026.xlsx`, `/KPIs/Maize OEE - Nov. 26.xlsx`.
+- Known governing files: `/Parameters/Downtime Codes v3.xlsx`, `/Parameters/Parameter Targets.xlsx` (not yet read; content UNKNOWN), `/KPIs/Maize OEE-Nov. 2026 v3.xlsx` (saved 7 Nov 2026; the earlier name `Maize OEE - Nov. 26.xlsx` is superseded, VERIFY before use), `/KPIs/Yearly OEE - 2026.xlsx` (existence not re-verified).
+- `/KPIs/Production Plan - 2026.xlsx` was deleted by the owner. Do not treat it as governing or as a source. Record it as removed.
+- Known conflict to log, not resolve: `/Parameters/Downtime Codes v3.xlsx` (read 7 Nov) shows P16 and P19 as Other (D-17: Process), O04 as Power Failure (D-17: Other), O11 as Feed Mill (D-21: Other). The local attachment copy still lists P25. See `docs/readiness/2026-11-09_Pipeline-Readiness.md`.
 - Known conflict to log, not resolve: the two app landing folders `/Apps/Mill-CD/records/` and `/Apps/Mill-App-Sync/records/` (corrections log S-01). Do not change either app.
 - Dropbox cannot upload .xlsx through this connector. Say so, and ask the owner to upload.
 
