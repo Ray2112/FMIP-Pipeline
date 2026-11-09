@@ -36,7 +36,7 @@ The 9 Nov attachment (`Maize OEE-Nov. 2026 v3.xlsx`) gives different values on r
 ## 3. Conflicts to log (owner decisions, not resolved by agents)
 
 1. `/Parameters/Downtime Codes v3.xlsx` vs owner decisions:
-   - P16 and P19: workbook says Other; D-17 says Process.
+   - P16 and P19: workbook says Other. **Owner decision 9 Nov 2026: Other.** D-17 (Process for P16 and P19) is superseded. The apps still classify them as Process (see Team Apps check), so the app code needs an owner-approved change.
    - O04: workbook says Power Failure; D-17 says Other.
    - O11: workbook says Feed Mill; D-21 says Other. **Owner decision kept: Other.**
    - P25: still listed in the attachment copy (`51922797-FMO_Downtime_Codes_v3.xlsx`, 61 codes). **Owner decision: P25 removed (D-16).**
@@ -46,7 +46,7 @@ The 9 Nov attachment (`Maize OEE-Nov. 2026 v3.xlsx`) gives different values on r
 
 ## 4. Open verification
 
-- OEE values differ between the 7 Nov Dropbox text and the 9 Nov attachment. Which file is current is an owner question (N-05 in the corrections log). The 7 Nov text contains notes about a Mill D toggle on `ENGINEERING!K2`, which I have not checked in the 9 Nov attachment.
+- **Current OEE (owner, 9 Nov 2026):** `Maize OEE-Nov. 2026 v3.xlsx`, Capacity utilization 83.92%, OEE 17.56%. The owner confirms the formulas in this file are correct. The 7 Nov Dropbox text reading (Capacity 66.41%, OEE 17.40%) is superseded (N-16 in the corrections log).
 - Test suites were not re-run on the release branches in this session. Record the command and result at merge review.
 - The apps have not been run in a browser against real data.
 - Old records containing P25 will show as unknown codes on re-validation. Count not yet measured.
@@ -60,7 +60,7 @@ The 9 Nov attachment (`Maize OEE-Nov. 2026 v3.xlsx`) gives different values on r
 | 3 | Merge PR #3 (Grain-Mgt `release/v0.9.0`). | Same. |
 | 4 | ~~PR #2 (FMIP-Pipeline requirements v0.5)~~ | Merged 9 Nov 2026. Closed. |
 | 5 | Confirm downtime v3 merges were intentional and validated in the app. | Confirm. |
-| 6 | Dropbox Downtime Codes v3 workbook: tiers (§3.1) and P25 removal. | Owner edits the workbook. |
+| 6 | Dropbox Downtime Codes v3 workbook: P16 and P19 tiers now Other (owner says updated; Dropbox metadata still shows last modified 6 Nov 15:45 UTC, to be confirmed). P24 and O04 tiers still to confirm. App code still shows P16, P19 as Process: owner approval needed before any app change. | Owner confirms workbook update and P24/O04; approves app change. |
 | 7 | ~~Mill C target source (§3.2)~~ | Resolved 9 Nov: THROUGHPUT TARGET total. |
 | 8 | Capacity and Calendar basis: which OEE file is current, and the intended definition (§2, §4). | Confirm. |
 | 9 | Glose purchasing sample (Release 3). | Provide sample. |
