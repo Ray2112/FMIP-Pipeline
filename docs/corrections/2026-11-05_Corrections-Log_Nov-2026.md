@@ -55,8 +55,31 @@ Terminology: kept as in source (Portuguese where the source is Portuguese). Sign
 - October data is final. No October figure is corrected in this log. Errors are fixed only in Nov workbooks and reports.
 - Deletion: none. Old drafts are not deleted until you confirm the Archive step (see S-03).
 
+## F. November OEE workbook: decisions and open conflicts (added 2026-11-09)
+
+Source for all rows: `Maize OEE-Nov. 2026 v3.xlsx` (Dropbox `/KPIs/`, same document as the attachment supplied 2026-11-09). Figures are MTD working values, not reconciled.
+
+| ID | Item | Where found | Detail | Action | Status |
+|---|---|---|---|---|---|
+| N-01 | Capacity (K7) denominator | `SUMMARY!K7` = `D13/(20833*ENGINEERING!G34)` | Owner decision 2026-11-09: capacity is based on available production time, so days with no plan are excluded. Workbook formula used. Supersedes the K7 formula `THROUGHPUT!E253 / (500000 × (COUNT(E2:E31) − 1))` recorded earlier. | Use workbook formula for Nov. | DONE (owner decision) |
+| N-02 | Quality (P7) basis | `SUMMARY!P7` = `MOISTURE!$G$253` = `(H249/E249)×0.1055` | Owner decision 2026-11-09: follow the workbook. In this file row 250 is blank (E250, H250 empty), so the earlier rule `MOISTURE!G254 = (H250/E250)×0.1055` cannot be evaluated. Superseded for Nov. | Use row 249 for Nov. | DONE (owner decision) |
+| N-03 | Nov OEE figures | `SUMMARY!K7:Q7`, LibreOffice recalculation of the attachment | Capacity 83.92%, Time 40.93%, Quality 51.13%, OEE 17.56%. Stored cache in the attachment agrees with the recalculation. | Working values only; report with basis and denominator (C-08). | VERIFY |
+| N-04 | Double counting in OEE | `SUMMARY!L7` = `K7*(G34/(D253/20833))*P7`; `Q7` = `K7*L7*P7` | L7 already contains K7 and P7, so Q7 counts capacity and quality twice. Owner has seen this and asked to follow the workbook for now. | Owner decision needed on the OEE formula. Do not change Nov figures until decided. | OPEN |
+| N-05 | Dropbox copy vs attachment | Dropbox text extraction (earlier read) vs `SUMMARY!K7:Q7` | Earlier extraction: Capacity 66.41%, Time 40.30%, Quality 65.02%, OEE 17.40%. Attachment and recalculation: 83.92%, 40.93%, 51.13%, 17.56%. Owner confirms both are the same document. Conflict not explained. | Owner to open Q7 in Excel and report the displayed value. | VERIFY |
+| N-06 | Realization (M7) and Calendar (N7) | `SUMMARY!M7` = `THROUGHPUT!E253/THROUGHPUT!D32` (80.04%); `N7` (25.07%) | Target basis `THROUGHPUT!D32` not checked against C-01 (Mill C monthly target). | Check D32 against the Production Plan formula before reporting. | OPEN |
+| N-07 | Silo reconciliation timing | `SUMMARY` silo block; `Actual` column (O) empty | Owner decision 2026-11-09: silo reconciliation is done only at month-end. Current variances are not meaningful. | Reconcile at month-end. | DONE (owner decision) |
+| N-08 | "Maize OEE - Nov. 26.xlsx" | Dropbox `/KPIs/` and `/KPIs/Old OEEs/` | Not found on 2026-11-09 (the file ID recorded earlier returns NOT_FOUND). A copy exists as an attachment from 6 Nov. Owner asked for it to be deleted; nothing was deleted because nothing was found. | Owner to confirm the file is gone. | VERIFY |
+| N-09 | Remote branches on GitHub | `downtime-v3`, `o11-tier-other` (Prodn-Mgt, Grain-Mgt); `feat/fmip-agent-team` (FMIP-Pipeline) | Delete attempts refused by the proxy (HTTP 403) on 2026-11-09. Branches are merged per v0.5 §4.1 (not re-verified through the API). | Owner to delete on GitHub after confirming merge. | OPEN (superseded in part by N-11) |
+| N-10 | Nov OEE file of record | Dropbox `/KPIs/Maize OEE-Nov. 2026 v3.xlsx` (`id:1V5iV_HsI3AAAAAAAAABAw`) | Owner decision 2026-11-09: use the v3 file in Dropbox. It is the only Nov OEE workbook in `/KPIs/`. Supersedes the "Maize OEE - Nov. 26.xlsx" reference in the handover (6 Nov) and N-08. | Use v3 as the governing workbook. | DONE (owner decision) |
+| N-11 | GitHub state checked 2026-11-09 | Prodn-Mgt PRs #4 and #5, Grain-Mgt PRs #1 and #2, FMIP-Pipeline PR #1 | All merged on 2026-11-06 (FMIP-Pipeline PR #2 merged 2026-11-09). The handover statement that these PRs are open is stale. Branches `downtime-v3` and `o11-tier-other` (both app repos) and `feat/fmip-agent-team` still exist. Delete retried on 2026-11-09: refused (HTTP 403) for all five. Not touched: Prodn-Mgt PR #6 (`release/v2.5.0`, open) and Grain-Mgt PR #3 (`release/v0.9.0`, open). | Merge verified. Owner to delete the three branch names on GitHub. | VERIFY (merge verified; deletion OPEN) |
+| N-12 | Downtime Codes v3 location | Log section B, D-01 (`/Reports/Downtime Codes v3.xlsx`) | Owner confirmed 2026-11-09: the file is in `/Parameters/`. The `/Reports/` reference is superseded. | Use `/Parameters/Downtime Codes v3.xlsx`. | DONE (owner confirmation) |
+| N-13 | Landing convention | S-01 | Owner decision 2026-11-09: D-1 in force (`/FMIP/`, per-app folders). Whether the apps' current write paths (`/Apps/Mill-CD/records/`, `/Apps/Mill-App-Sync/records/`) move to `/FMIP/` is not decided. | Decide the app path move separately. | DONE (D-1 in force); OPEN (app path migration) |
+| N-14 | Capacity rule in force | Status note 2026-11-07 and handover s.3 (`500,000 kg/day × (days − 1)`) | Owner decision 2026-11-09: the N-01 rule (`20833 × ENGINEERING!G34`, available production time) is the rule in force. The older rule is superseded. | Apply N-01 to all Nov capacity figures (C-02). | DONE (owner decision) |
+
 ## Revision history
 
 | Date | Change | By |
 |---|---|---|
 | 2026-11-05 | Initial log from handover note (2026-11-04) and Production Plan 2026 check | Claude |
+| 2026-11-09 | Added section F (N-01 to N-09): owner decisions on Nov OEE capacity, quality basis and silo timing; open OEE double-count and Dropbox/attachment conflict; GitHub branch deletes refused. Existing entries not changed. | Claude |
+| 2026-11-09 | Added N-10 to N-14: Dropbox v3 as Nov OEE file of record; GitHub merge state verified (branch deletes still refused); downtime file in `/Parameters/`; D-1 landing convention in force; N-01 capacity rule in force. N-08 and N-09 kept as written; N-10 and N-11 supersede them. | Claude |
