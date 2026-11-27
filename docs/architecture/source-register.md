@@ -69,9 +69,10 @@ Uploads to Dropbox were done in batches, not daily: 05/11, 06/11, 07/11, then 13
 ### Owner and deadline
 | Item | Value | Status |
 |---|---|---|
-| Owner of the daily export and upload | _pending owner decision_ | Proposed: the shift leader on duty at the 07:00 handover; the Supervisor checks it is there |
-| Daily deadline | _pending owner decision_ | Proposed: **09:00** for the previous 07:00→07:00 day, three hours before the 12:00 pipeline run (OEE fill waits for 12:00, D30) |
-| Back-up when the owner is absent | _pending owner decision_ | |
+| Owner of the upload (Gmail → Dropbox) | An upload agent, to be built | Confirmed (owner, 27 Nov 2026). Agent not built yet; until it exists the step is manual |
+| Owner of the SCADA export at the mill | _not decided_ | The agent can only move a file that was exported and emailed |
+| Daily deadline | **09:00** for the previous 07:00→07:00 day | Confirmed (owner, 27 Nov 2026). Three hours before the 12:00 pipeline run (D30) |
+| Back-filling 14.11–24.11 | Not required | Confirmed (owner, 27 Nov 2026: "Don't worry about previous data") |
 | Missing file rule | Report shows "sem dados / no data"; never estimated | Confirmed (standing rule) |
 
 ## 4. Gaps
@@ -79,7 +80,7 @@ Uploads to Dropbox were done in batches, not daily: 05/11, 06/11, 07/11, then 13
 - No sample of any F-series JSON has been opened yet. Schemas are taken from app READMEs only.
 - No owner or retention rule is recorded for any source.
 - Silo, bin and temperature feeds (F-04, F-05) and their Nov coverage are not verified.
-- L-04 SCADA: owner and deadline pending owner decision (section 3a). Schema is in the decision log (hourly rows in tonnes: Clean, Screening, B1, Flour 1, Flour 2, Germ, Z.F).
+- L-04 SCADA: upload agent and 09:00 deadline agreed; agent not built; export owner at the mill not decided (section 3a). Schema is in the decision log (hourly rows in tonnes: Clean, Screening, B1, Flour 1, Flour 2, Germ, Z.F).
 
 ## 5. Next actions
 
