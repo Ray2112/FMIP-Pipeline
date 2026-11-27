@@ -45,11 +45,11 @@ These are working copies and are not authoritative. The pipeline must not read t
 
 ## 3a. L-04 SCADA daily upload: owner, deadline, current gap
 
-**Checked 2026-11-25** (Dropbox `/Reports/SCADA Reports/Nov. SCADA/`, Gmail rayzhax@, PC Downloads).
+**Checked 2026-11-25** (Dropbox `/Reports/SCADA Reports/Nov. SCADA/`, email inbox, PC Downloads).
 
 ### How the file gets to Dropbox today (Confirmed from timestamps and mail)
 1. The SCADA hourly report (07:00→07:00, Line C) is exported to `.xlsx` at the mill.
-2. It is emailed from the Carrinho work mailbox (Zhax) to the personal Gmail (Zhax).
+2. It is emailed to an inbox the pipeline owner reads.
 3. It is saved by hand into the Dropbox folder above. There is no automatic step.
 
 Uploads to Dropbox were done in batches, not daily: 05/11, 06/11, 07/11, then 13 files on 14/11 at 19:11–19:12 UTC. That is the last Dropbox upload.
